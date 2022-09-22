@@ -67,7 +67,7 @@ let url = req.query.url
     let title = ch('.entry-title');
     let postdate = ch('.entry-date');
     
-    let postThumbnail = ch('.entry-thumb')
+    let postThumbnail = ch('.td-post-content').find('.entry-thumb')
     dataToSend.date = postdate[0].children[0].data
     dataToSend.dateTime = postdate[0].attribs.datetime
     dataToSend.title = title[0].children[0].data
