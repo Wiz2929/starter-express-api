@@ -3,6 +3,7 @@ const cheerio = require("cheerio")
 const express = require('express')
 var cors = require('cors');
 const app = express()
+app.use(cors())
 const port = Number(process.env.PORT || 3000);
 app.get('/', (req, res, next) => {
 res.status(200).json({
