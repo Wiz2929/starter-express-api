@@ -3,7 +3,6 @@ const cheerio = require("cheerio")
 const express = require('express')
 var cors = require('cors');
 const app = express()
-app.use(cors())
 const port = Number(process.env.PORT || 3000);
 app.get('/', (req, res, next) => {
 res.status(200).json({
@@ -55,6 +54,14 @@ let url = req.query.url
       ch(this).remove();
     })
     let aCount = 0;
+    
+    console.log("----")
+    let title = ch('.entry-title');
+    let postdate = ch('.entry-date');
+    
+    let postThumbnail = ch('.td-post-content').find('img').each(function(){
+      
+    })
     ch('.td-post-content').find('a').each(function(){
     let href = ch(this)[0].attribs.href
     if(href.includes('wp.com')){
@@ -63,11 +70,6 @@ let url = req.query.url
       ch(this)[0].attribs.href = href.replace("nullphpscript","nullez")
     }
     })
-    console.log("----")
-    let title = ch('.entry-title');
-    let postdate = ch('.entry-date');
-    
-    let postThumbnail = ch('.td-post-content').find('.entry-thumb')
     dataToSend.date = postdate[0].children[0].data
     dataToSend.dateTime = postdate[0].attribs.datetime
     dataToSend.title = title[0].children[0].data
